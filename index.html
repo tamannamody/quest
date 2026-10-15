@@ -553,7 +553,7 @@ button{touch-action:manipulation}
       <div class="tx">
         <div class="k">A playable portfolio</div>
         <h1>TAMANNA<br><span>QUEST</span></h1>
-        <p class="lead">22, Kolkata. Reader, gamer, builder of side projects, badminton player, coffee drinker with a fitcheck. This little town is me. A gold arrow walks you through it one place at a time; see how much of me you can find.</p>
+        <p class="lead"><span data-age>23</span>, Kolkata. Reader, gamer, builder of side projects, badminton player, coffee drinker with a fitcheck. This little town is me. A gold arrow walks you through it one place at a time; see how much of me you can find.</p>
         <div class="cls"><span class="chip">Class · Growth Strategist</span><span class="chip">Subclass · Builder</span><span class="chip">Buff · coffee</span></div>
         <div class="cta">
           <button class="btn red" id="bStart">▶ Press start</button>
@@ -604,7 +604,7 @@ const side=(src,alt,k,body,line,tools)=>`<div class="side"><img src="${im(src)}"
 const LOC=[
  {id:'welcome',name:'Start here',kind:'sign',x:20,y:12,w:1,h:1,where:'Town square',
   html:`<div class="k">How to play</div><h3>Welcome to town.</h3>
-  <p class="cap">I am Tamanna: 22, Kolkata, a reader, gamer and builder who does growth marketing for a living. Every place in this town holds a piece of me. Find one and you earn XP, and XP levels you up through my actual career.</p>
+  <p class="cap">I am Tamanna: ${birthday().age}, Kolkata, a reader, gamer and builder who does growth marketing for a living. Every place in this town holds a piece of me. Find one and you earn XP, and XP levels you up through my actual career.</p>
   <div class="keys"><kbd>↑ ↓ ← →</kbd><span>or WASD to walk</span><kbd>E</kbd><span>or Enter, or just walk into a door, to go inside</span><kbd>M</kbd><span>opens the map, which also fast-travels</span><kbd>Esc</kbd><span>closes a window</span></div>
   <p class="touchonly">On a phone: the pad, bottom left, walks. The red <b>A</b> button opens whatever you are standing next to, or just walk into a door. <b>Map</b> fast-travels and ✕ closes a window.</p>
   <h4>Lost? Never.</h4>
@@ -756,7 +756,7 @@ const LOC=[
   html:()=>stepHTML(),init:root=>stepInit(root)},
 
 ];
-const FACTS={welcome:'She built a whole town instead of a normal portfolio.',home:'She is 22 and levels up every 8 October.',
+const FACTS={welcome:'She built a whole town instead of a normal portfolio.',home:'She is '+birthday().age+' and levels up every 8 October.',
  work:'Six companies so far, and she launched a brand along the way.',skills:'She writes the copy and the code that ships it.',
  cafe:'No coffee happens without a fitcheck.',post:'Her inbox is open. Say hi.',
  edit:'She is learning video editing from the basics up, cut by cut.',
@@ -2265,7 +2265,7 @@ $('#bMap').onclick=openMap;
 /* résumé view */
 function buildResume(){
   const order=['home','work','skills','stepahead','edit','github','reading','post'];
-  $('#rv').innerHTML=`<section class="hero" style="border-top:0;padding-top:0"><div class="k">22 · Kolkata · growth strategist who builds</div>
+  $('#rv').innerHTML=`<section class="hero" style="border-top:0;padding-top:0"><div class="k">${birthday().age} · Kolkata · growth strategist who builds</div>
    <h2>Tamanna Tahseen</h2><p class="cap">Reader, gamer, builder, badminton player. Growth that compounds, not just campaigns that spike: performance marketing, D2C growth and content, now built with AI and code.</p>
    <p><a href="mailto:tamanna.tahseen567@gmail.com">tamanna.tahseen567@gmail.com</a> · <a href="https://www.linkedin.com/in/tamanna-tahseen-01b4a9234" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/tamannamody" target="_blank" rel="noopener">GitHub</a> · <a href="mailto:tamanna@stepaheadco.com">tamanna@stepaheadco.com</a></p></section>`+
    order.map(id=>`<section data-id="${id}">${htmlOf(LOC.find(l=>l.id===id))}</section>`).join('');
@@ -2391,5 +2391,6 @@ function frame(now){
 hud();
 (document.fonts&&document.fonts.ready||Promise.resolve()).then(()=>requestAnimationFrame(frame));
 })();
+document.querySelectorAll('[data-age]').forEach(e=>e.textContent=birthday().age);
 </script>
 </html>
